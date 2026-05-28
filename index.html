@@ -85,28 +85,44 @@
     <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-opacity-10 py-4 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <!-- Isologotipo -->
-            <a href="#" onclick="navigate('home')" class="flex items-center gap-3">
+            <a href="#" onclick="navigate('home', event)" class="flex items-center gap-3">
                 <span class="font-serif text-2xl font-bold tracking-widest text-white">
                     L'ÉLIXIR <span class="text-gold">&</span> CARBÓN
                 </span>
             </a>
 
-            <!-- Enlaces de Navegación SPA -->
+            <!-- Enlaces de Navegación SPA (Escritorio) -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#home" onclick="navigate('home')" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gold">Inicio</a>
-                <a href="#carta" onclick="navigate('carta')" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">La Carta</a>
-                <a href="#sommelier" onclick="navigate('sommelier')" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">El Sommelier</a>
-                <a href="#reservas" onclick="navigate('reservas')" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">Reservar Mesa</a>
+                <a href="#home" onclick="navigate('home', event)" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gold">Inicio</a>
+                <a href="#carta" onclick="navigate('carta', event)" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">La Carta</a>
+                <a href="#sommelier" onclick="navigate('sommelier', event)" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">El Sommelier</a>
+                <a href="#reservas" onclick="navigate('reservas', event)" class="nav-btn text-sm font-medium tracking-widest uppercase hover:text-gold transition-colors duration-300 text-gray-400">Reservar Mesa</a>
             </div>
 
-            <!-- Botón de Acción Rápido -->
-            <div>
-                <a href="#reservas" onclick="navigate('reservas')" class="border border-gold text-gold hover:bg-gold hover:text-obsidian px-5 py-2.5 rounded-none text-xs tracking-widest uppercase font-bold transition-all duration-300">
+            <!-- Botón de Acción Rápido / Hamburguesa para móviles -->
+            <div class="flex items-center gap-4">
+                <a href="#reservas" onclick="navigate('reservas', event)" class="hidden sm:inline-block border border-gold text-gold hover:bg-gold hover:text-obsidian px-5 py-2.5 rounded-none text-xs tracking-widest uppercase font-bold transition-all duration-300">
                     Reservar Online
                 </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-gold focus:outline-none text-2xl" aria-label="Abrir menú">
+                    <i class="bi bi-list" id="menu-icon"></i>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Menú Desplegable de Navegación Móvil -->
+    <div id="mobile-menu" class="hidden fixed top-[72px] left-0 w-full z-40 bg-obsidian/95 backdrop-blur-md border-b border-gold/10 transition-all duration-300 md:hidden">
+        <div class="flex flex-col p-6 gap-4">
+            <a href="#home" onclick="navigate('home', event)" class="mobile-nav-btn text-sm font-medium tracking-widest uppercase text-gold">Inicio</a>
+            <a href="#carta" onclick="navigate('carta', event)" class="mobile-nav-btn text-sm font-medium tracking-widest uppercase text-gray-400">La Carta</a>
+            <a href="#sommelier" onclick="navigate('sommelier', event)" class="mobile-nav-btn text-sm font-medium tracking-widest uppercase text-gray-400">El Sommelier</a>
+            <a href="#reservas" onclick="navigate('reservas', event)" class="mobile-nav-btn text-sm font-medium tracking-widest uppercase text-gray-400">Reservar Mesa</a>
+            <a href="#reservas" onclick="navigate('reservas', event)" class="border border-gold text-gold text-center py-3 text-xs tracking-widest uppercase font-bold mt-2">
+                Reservar Online
+            </a>
+        </div>
+    </div>
 
     <!-- ============================================= -->
     <!-- SECCIÓN 1: INICIO (HOME)                      -->
@@ -128,10 +144,10 @@
                         Un espacio sensorial oculto donde cada corte de carne premium madurada y cada copa de vino de autor cuentan una historia inigualable.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="#reservas" onclick="navigate('reservas')" class="bg-gold text-obsidian font-bold tracking-widest uppercase text-xs px-8 py-4 hover:bg-gold-dark transition-all duration-300 text-center">
+                        <a href="#reservas" onclick="navigate('reservas', event)" class="bg-gold text-obsidian font-bold tracking-widest uppercase text-xs px-8 py-4 hover:bg-gold-dark transition-all duration-300 text-center">
                             Asegurar Experiencia
                         </a>
-                        <a href="#carta" onclick="navigate('carta')" class="border border-gray-600 hover:border-gold hover:text-gold text-white font-bold tracking-widest uppercase text-xs px-8 py-4 transition-all duration-300 text-center">
+                        <a href="#carta" onclick="navigate('carta', event)" class="border border-gray-600 hover:border-gold hover:text-gold text-white font-bold tracking-widest uppercase text-xs px-8 py-4 transition-all duration-300 text-center">
                             Explorar la Carta Interactiva
                         </a>
                     </div>
@@ -257,7 +273,7 @@
                             <p id="sommelier-text" class="text-gray-400 italic">"..."</p>
                         </div>
 
-                        <button onclick="navigate('reservas')" class="w-100 bg-gold text-obsidian font-bold tracking-widest uppercase text-xs w-full py-3.5 hover:bg-gold-dark transition-all duration-300 block text-center">
+                        <button onclick="navigate('reservas', event)" class="w-100 bg-gold text-obsidian font-bold tracking-widest uppercase text-xs w-full py-3.5 hover:bg-gold-dark transition-all duration-300 block text-center">
                             Avanzar a la Reserva
                         </button>
                     </div>
@@ -489,35 +505,77 @@
             { id: 8, categoria: 'postres', nombre: 'Flan de Campo & Cardamomo', desc: 'Elaborado con huevos de campo e infusión de cardamomo, acompañado de dulce de leche artesanal.', precio: 6500, maridaje: 'Oporto Tawny' }
         ];
 
-        // --- 2. SISTEMA DE RUTEADOR INTERNO SPA ---
-        function navigate(viewName) {
+        // --- 2. SISTEMA DE MENÚ MÓVIL (HAMBURGUESA) ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('bi-list');
+                icon.classList.add('bi-x');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('bi-x');
+                icon.classList.add('bi-list');
+            }
+        }
+
+        // --- 3. SISTEMA DE RUTEADOR INTERNO SPA CORREGIDO ---
+        function navigate(viewName, event) {
+            // Prevenir comportamiento por defecto de enlaces que rompen el scroll
+            if (event) {
+                event.preventDefault();
+            }
+
+            // Cerrar menú móvil automáticamente al navegar
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                if (icon) {
+                    icon.classList.remove('bi-x');
+                    icon.classList.add('bi-list');
+                }
+            }
+
+            // CORRECCIÓN CLAVE: Desplazamiento instantáneo al tope (0,0) antes de cambiar vistas
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
             // Ocultar todas las secciones
             document.querySelectorAll('.spa-section').forEach(section => {
                 section.classList.remove('active');
             });
+            
             // Activar sección elegida
             const target = document.getElementById(`${viewName}-view`);
             if (target) {
                 target.classList.add('active');
             }
 
-            // Cambiar estilos de los botones de la barra de navegación
+            // Cambiar estilos de los botones de la barra de navegación (Escritorio)
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('text-gold');
                 btn.classList.add('text-gray-400');
             });
-            // Buscar y colorear el botón activo actual
             const activeNavBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('href') === `#${viewName}`);
             if (activeNavBtn) {
                 activeNavBtn.classList.add('text-gold');
                 activeNavBtn.classList.remove('text-gray-400');
             }
 
-            // Hacer scroll hasta arriba para simular carga de página
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Cambiar estilos de los botones de la barra de navegación (Móvil)
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                btn.classList.remove('text-gold');
+                btn.classList.add('text-gray-400');
+            });
+            const activeMobileNavBtn = Array.from(document.querySelectorAll('.mobile-nav-btn')).find(btn => btn.getAttribute('href') === `#${viewName}`);
+            if (activeMobileNavBtn) {
+                activeMobileNavBtn.classList.add('text-gold');
+                activeMobileNavBtn.classList.remove('text-gray-400');
+            }
         }
 
-        // Manejo de hashes para recargar o ir atrás en el navegador
+        // Manejo de hashes para recargar o ir atrás en el navegador de manera segura
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1) || 'home';
             navigate(hash);
@@ -525,49 +583,7 @@
             updateInteractiveMap();
         });
 
-        // --- 3. LÓGICA DE LA CARTA INTERACTIVA ---
-        let selectedMesaVirtual = [];
-
-        function renderMenu(categoriaFilter) {
-            const grid = document.getElementById('menu-items-grid');
-            grid.innerHTML = '';
-
-            const itemsToRender = categoriaFilter === 'todas' 
-                ? platosDatabase 
-                : platosDatabase.filter(p => p.categoria === categoriaFilter);
-
-            itemsToRender.forEach(plato => {
-                grid.innerHTML += `
-                    <div class="bg-obsidian-light border border-gray-800 p-5 flex flex-col justify-between hover:border-gold/30 transition-all duration-300">
-                        <div>
-                            <div class="flex justify-between items-start gap-4 mb-2">
-                                <h4 class="font-serif text-lg text-white font-bold">${plato.nombre}</h4>
-                                <span class="text-gold font-bold font-serif">$${plato.precio.toLocaleString('es-AR')}</span>
-                            </div>
-                            <p class="text-xs text-gray-400 mb-4">${plato.desc}</p>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-gray-900 pt-3 mt-auto">
-                            <span class="text-[10px] text-gray-500 italic"><i class="bi bi-cup-straw me-1"></i> ${plato.maridaje}</span>
-                            <button onclick="addToMesaVirtual(${plato.id})" class="text-[10px] bg-gold/10 text-gold hover:bg-gold hover:text-obsidian px-3 py-1.5 uppercase font-bold tracking-wider transition-colors duration-300">
-                                + Añadir a Mesa
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function filterMenu(categoria, btnElement) {
-            // Manejar estilos de solapas
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active', 'border-gold', 'text-gold');
-                btn.classList.add('border-transparent', 'text-gray-400');
-            });
-            
-            if (btnElement) {
-                btnElement.classList.add('active', 'border-gold', 'text-gold');
-            } else {
-                // Si se llama por hash inicial
+        // --- 4. LÓGICA DE LA CARTA INTERACTIVA ---
                 const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.textContent.toLowerCase().includes(categoria === 'todas' ? 'todas' : categoria));
                 if (targetBtn) {
                     targetBtn.classList.add('active', 'border-gold', 'text-gold');
