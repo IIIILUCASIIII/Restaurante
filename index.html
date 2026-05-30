@@ -3,329 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA_DE_DESARROLLO_WEB // CORE</title>
+    <title>Gusto & Fuego | Restaurante Gourmet</title>
+    <!-- Fuentes elegantes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Tipografía Monoespaciada y de Pantalla de Alta Densidad -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --neon-green: #00ff66;
-            --neon-orange: #ff5500;
-            --bg-dark: #0a0a0c;
-            --panel-bg: #121216;
-            --border-color: #22222a;
-            --text-main: #e2e8f0;
+            --dorado: #c5a880;
+            --dorado-dark: #a3875f;
+            --oscuro: #111111;
+            --oscuro-card: #1a1a1a;
+            --gris-claro: #f4f4f4;
+            --texto-blanco: #ffffff;
+            --texto-mutado: #a0a0a0;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            padding: 2rem 1rem;
+            background-color: var(--oscuro);
+            color: var(--texto-blanco);
+            line-height: 1.6;
         }
 
-        /* Líneas de cuadrícula de fondo estilo Matrix/Plano Técnico */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .terminal-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 2px solid var(--border-color);
-            background: var(--panel-bg);
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            overflow: hidden;
-        }
-
-        /* Barra superior de la ventana del sistema */
-        .terminal-header {
-            background: #1a1a22;
-            padding: 0.8rem 1.5rem;
-            border-bottom: 2px solid var(--border-color);
+        /* Navbar Elegante */
+        header {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            padding: 1.5rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
-        .window-dots {
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--texto-blanco);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .logo span { color: var(--dorado); }
+
+        .nav-links {
             display: flex;
-            gap: 8px;
-        }
-        .dot {
-            width: 12px; height: 12px; border-radius: 50%; background: #333;
-        }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-
-        .status-bar {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.8rem;
-            color: var(--neon-green);
-        }
-
-        /* Contenido Principal */
-        .terminal-body {
-            padding: 3rem;
-        }
-
-        .glitch-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
-        .glitch-title span {
-            color: var(--neon-green);
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-        }
-
-        .subtitle {
-            font-family: 'Fira Code', monospace;
-            color: #64748b;
-            margin-bottom: 3rem;
-            font-size: 1rem;
-        }
-
-        /* SECCIÓN INNOVADORA: El Selector de Módulos (Portafolio) */
-        .module-selector {
-            margin: 4rem 0;
-        }
-
-        .module-label {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: var(--neon-orange);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* La tarjeta del Portafolio Gastronómico con look de Software Activo */
-        .gastronomy-card {
-            border: 2px dashed var(--neon-orange);
-            background: rgba(255, 85, 0, 0.03);
-            border-radius: 6px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            list-style: none;
             gap: 2rem;
-            position: relative;
         }
 
-        /* Indicador de "Online / Listo para instalar" */
-        .live-indicator {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: var(--neon-orange);
-            color: black;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            font-weight: bold;
+        .nav-links a {
+            color: var(--texto-blanco);
+            text-decoration: none;
+            font-size: 0.9rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
-        .gastronomy-card h3 {
-            font-size: 2rem;
+        .nav-links a:hover { color: var(--dorado); }
+
+        /* Hero / Portada Impactante */
+        .hero {
+            height: 100vh;
+            /* Usamos un degradado abstracto premium imitando texturas oscuras de restaurante */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(17,17,17,1)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
             margin-bottom: 1rem;
             letter-spacing: -1px;
         }
 
-        .gastronomy-card p {
-            color: #94a3b8;
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--dorado);
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* Mini consola de especificaciones dentro de la tarjeta */
-        .spec-sheet {
-            font-family: 'Fira Code', monospace;
-            background: #0a0a0c;
-            padding: 1rem;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            font-size: 0.85rem;
-        }
-        .spec-line {
-            margin-bottom: 0.4rem;
-            color: #a1a1aa;
-        }
-        .spec-line span { color: var(--neon-green); }
-
-        /* Botón de Acción Estilo Cyberpunk */
-        .cyber-btn {
-            display: inline-block;
-            background: var(--neon-green);
-            color: #000;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .btn {
+            padding: 1rem 2.5rem;
+            background-color: var(--dorado);
+            color: var(--oscuro);
             text-decoration: none;
-            transition: all 0.2s ease;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: 1px;
-            margin-top: 1.5rem;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            border: 1px solid var(--dorado);
         }
 
-        .cyber-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.7);
-            background: #fff;
+        .btn:hover {
+            background-color: transparent;
+            color: var(--texto-blanco);
         }
 
-        /* Formulario tipo Inyección de Datos */
-        .form-section {
-            border-top: 2px solid var(--border-color);
-            padding-top: 3rem;
-            margin-top: 4rem;
+        /* Sección de Menú Interactivo */
+        .menu-section {
+            padding: 6rem 10%;
+            background-color: var(--oscuro);
         }
 
-        .form-grid {
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--dorado);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+        }
+
+        /* Pestañas del Menú (Simulación interactiva con CSS/JS) */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--texto-mutado);
+            font-size: 1rem;
+            cursor: pointer;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            color: var(--dorado);
+            border-bottom: 2px solid var(--dorado);
+        }
+
+        /* Cuadrícula de Platos */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 1.5rem;
+        }
+
+        .item-info h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-info p {
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
+            max-width: 80%;
+        }
+
+        .item-price {
+            color: var(--dorado);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Sección de Reservas (Formulario) */
+        .booking-section {
+            background: linear-gradient(rgba(17,17,17,0.9), rgba(17,17,17,0.9)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200') no-repeat center center/cover;
+            padding: 6rem 10%;
+        }
+
+        .booking-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .input-wrapper {
-            position: relative;
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        .input-wrapper input, .input-wrapper textarea {
-            width: 100%;
-            background: #16161e;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
+        .form-group label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, .form-group select {
+            background: #111;
+            border: 1px solid #333;
+            padding: 0.8rem;
             color: white;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            border-radius: 4px;
-        }
-
-        .input-wrapper input:focus, .input-wrapper textarea:focus {
             outline: none;
-            border-color: var(--neon-green);
+            transition: border-color 0.3s;
         }
 
-        .full-width {
-            grid-column: span 2;
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--dorado);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--dorado);
+            border: 1px solid var(--dorado);
+            color: var(--oscuro);
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: transparent;
+            color: white;
         }
 
         /* Footer */
-        .terminal-footer {
+        footer {
             text-align: center;
-            padding: 2rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75rem;
-            color: #475569;
-            border-top: 1px solid var(--border-color);
+            padding: 3rem;
+            background: #0a0a0a;
+            border-top: 1px solid #1a1a1a;
+            color: var(--texto-mutado);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .gastronomy-card { grid-template-columns: 1fr; }
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .glitch-title { font-size: 2.3rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="terminal-container">
-        <!-- Cabecera de la Ventana -->
-        <div class="terminal-header">
-            <div class="window-dots">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-            </div>
-            <div class="status-bar">STATUS: NO_CONTRATADO // ESPERANDO_PROYECTO</div>
+    <!-- Navegación -->
+    <header>
+        <a href="#" class="logo">Gusto<span>&</span>Fuego</a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#menu">El Menú</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+        </ul>
+    </header>
+
+    <!-- Portada Principal -->
+    <section id="inicio" class="hero">
+        <h1>Alta Cocina de Autor</h1>
+        <p>Una experiencia sensorial inolvidable en cada plato</p>
+        <a href="#reservas" class="btn">Reservar Mesa</a>
+    </section>
+
+    <!-- Sección de Menú -->
+    <section id="menu" class="menu-section">
+        <div class="section-title">
+            <p>Nuestras Especialidades</p>
+            <h2>Descubre el Menú</h2>
         </div>
 
-        <!-- Cuerpo Central -->
-        <div class="terminal-body">
-            
-            <h1 class="glitch-title">No diseño plantillas.<br>Programo <span>Armas Digitales.</span></h1>
-            <p class="subtitle">> Despliega plataformas web de alta conversión y código ultra-limpio.</p>
+        <div class="menu-tabs">
+            <button class="tab-btn active">Fuertes</button>
+            <button class="tab-btn">Entradas</button>
+            <button class="tab-btn">Postres & Vinos</button>
+        </div>
 
-            <!-- Sección de Portafolio Rompedora -->
-            <div class="module-selector">
-                <span class="module-label">[MÓDULO_DE_NICHOS_DISPONIBLE_01]</span>
-                
-                <div class="gastronomy-card">
-                    <div class="live-indicator">PROYECTO_ACTIVO</div>
-                    
-                    <div>
-                        <h3>Sitio Web para Gastronomía</h3>
-                        <p>Olvídate de las cartas en PDF feos de WhatsApp. Este sistema convierte visitas de Instagram en reservas reales de mesas y pedidos directos sin comisiones.</p>
-                        
-                        <a href="#" target="_blank" class="cyber-btn" style="background: var(--neon-orange); box-shadow: 0 0 15px rgba(255, 85, 0, 0.4); color: white;">
-                            INICIAR DEMO INTERACTIVA
-                        </a>
+        <div class="menu-grid">
+            <!-- Plato 1 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Filet Mignon en Reducción de Malbec</h3>
+                    <p>Medallón de tierno lomo envuelto en panceta ahumada, acompañado de puré rústico trufado.</p>
+                </div>
+                <div class="item-price">$34</div>
+            </div>
+
+            <!-- Plato 2 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Salmón Rosado del Pacífico</h3>
+                    <p>A la plancha con costra de hierbas finas, sobre colchón de espárragos salteados y crema de limón.</p>
+                </div>
+                <div class="item-price">$29</div>
+            </div>
+
+            <!-- Plato 3 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Risotto de Hongos Silvestres</h3>
+                    <p>Arroz carnaroli cremoso con una fina selección de gírgolas y champiñones, terminado con queso parmesano añejo.</p>
+                </div>
+                <div class="item-price">$26</div>
+            </div>
+
+            <!-- Plato 4 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Costillas de Cordero Patagónico</h3>
+                    <p>Asadas lentamente al romero y ajo, acompañadas de papas doradas al horno de barro.</p>
+                </div>
+                <div class="item-price">$38</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Reservas -->
+    <section id="reservas" class="booking-section">
+        <div class="section-title">
+            <p>Planifica tu Velada</p>
+            <h2>Reserva una Mesa</h2>
+        </div>
+
+        <div class="booking-form">
+            <form action="#" method="GET" onsubmit="alert('¡Simulación de Reserva Exitosa! Este es el comportamiento que tendrá el sitio de tus clientes.'); return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre" required>
                     </div>
-
-                    <!-- Datos técnicos simulados que vuelven locos a los clientes exigentes -->
-                    <div class="spec-sheet">
-                        <div class="spec-line">> TIPO: <span>Plataforma Gastro Premium</span></div>
-                        <div class="spec-line">> CARGA: <span>0.4s (Ultra Fast)</span></div>
-                        <div class="spec-line">> INTERFAZ: <span>Menú Digital Resonante</span></div>
-                        <div class="spec-line">> CONVERSIÓN: <span>+30% vs Sitios Clásicos</span></div>
-                        <div class="spec-line">> ESTADO: <span>Listo para Adaptar e Instalar</span></div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" placeholder="Tu número de contacto" required>
                     </div>
                 </div>
-            </div>
 
-            <!-- Formulario de Entrada de Datos -->
-            <div class="form-section">
-                <span class="module-label" style="color: var(--neon-green)">[INICIAR_SOLICITUD_DE_PRESUPUESTO]</span>
-                
-                <form action="#" method="POST" class="form-grid">
-                    <div class="input-wrapper">
-                        <input type="text" placeholder="TU_NOMBRE_O_EMPRESA" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" required>
                     </div>
-                    <div class="input-wrapper">
-                        <input type="email" placeholder="TU_EMAIL_DE_CONTACTO" required>
+                    <div class="form-group">
+                        <label for="hora">Hora</label>
+                        <select id="hora" required>
+                            <option value="19:30">19:30 hs</option>
+                            <option value="21:00">21:00 hs</option>
+                            <option value="22:30">22:30 hs</option>
+                        </select>
                     </div>
-                    <div class="input-wrapper full-width">
-                        <textarea rows="4" placeholder="DESCRIBE_TU_PROYECTO_O_NICHE_DE_MERCADO..." required></textarea>
-                    </div>
-                    <div class="full-width" style="text-align: right;">
-                        <button type="submit" class="cyber-btn">INYECTAR PROYECTO AL SISTEMA</button>
-                    </div>
-                </form>
-            </div>
+                </div>
 
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="comensales">Número de Personas</label>
+                    <select id="comensales" required>
+                        <option value="2">2 Personas</option>
+                        <option value="4">4 Personas</option>
+                        <option value="6">6 Personas o más</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmar Reserva Comercial</button>
+            </form>
         </div>
+    </section>
 
-        <!-- Footer del Sistema -->
-        <div class="terminal-footer">
-            // TERMINAL v2.6 // CONSTRUIDO PARA ROMPER EL MERCADO // 2026_ALL_RIGHTS_RESERVED
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Gusto & Fuego - Todos los derechos reservados.</p>
+        <p style="font-size: 0.7rem; color: var(--dorado); margin-top: 0.5rem;">Demo técnica desarrollada con fines comerciales.</p>
+    </footer>
 
 </body>
 </html>
