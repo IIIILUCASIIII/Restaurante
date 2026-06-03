@@ -3,38 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabores Únicos | Restaurante Gourmet</title>
+    <title>Descubre el Menú | Restaurante Gourmet</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --primary-color: #bc9853;
-            --dark-color: #1a1a1a;
-            --light-color: #f8f9fa;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --text-color: #ffffff;
+            --muted-text: #aaaaaa;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            background-color: var(--light-color);
+            background-color: var(--dark-bg);
+            color: var(--text-color);
         }
 
-        h1, h2, h3, .navbar-brand {
+        h1, h2, h3, .section-title {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navbar personalizado para evitar fallos en móviles */
+        /* Navbar */
         .navbar {
-            background-color: rgba(26, 26, 26, 0.95) !important;
+            background-color: rgba(10, 10, 10, 0.95) !important;
             backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
+            border-bottom: 1px solid #222;
         }
 
         .nav-link {
             color: #ffffff !important;
-            transition: color 0.3s;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -43,56 +47,92 @@
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200') no-repeat center center/cover;
-            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200') no-repeat center center/cover;
+            height: 80vh;
             display: flex;
             align-items: center;
-            color: white;
             text-align: center;
         }
 
-        /* Estilos de las Cartas / Menú */
-        .nav-pills .nav-link {
-            color: var(--dark-color) !important;
-            border: 1px solid var(--primary-color);
-            margin: 0 5px 10px 5px;
-            background-color: transparent;
+        /* Estilos de las Pestañas (Menú) al estilo de la imagen */
+        .nav-tabs {
+            border-bottom: none;
         }
 
-        .nav-pills .nav-link.active {
-            background-color: var(--primary-color) !important;
-            color: white !important;
+        .nav-tabs .nav-link {
+            background: none !important;
+            border: none !important;
+            color: var(--muted-text) !important;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            position: relative;
+            transition: color 0.3s;
         }
 
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Línea inferior animada para la pestaña activa */
+        .nav-tabs .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* Elementos del Menú */
         .menu-item {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            padding: 20px 0;
+            border-bottom: 1px dashed #222;
         }
 
-        .menu-item:hover {
-            transform: translateY(-5px);
+        .menu-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
         .menu-price {
             color: var(--primary-color);
             font-weight: 600;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
         }
 
-        /* Sección Reservas */
+        .menu-desc {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* Formulario de Reserva */
         .reservation-section {
-            background-color: var(--dark-color);
+            background-color: var(--card-bg);
+            border-top: 1px solid #222;
+        }
+
+        .form-control, .form-select {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
             color: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #222;
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: none;
         }
 
         .btn-custom {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 25px;
+            padding: 12px 30px;
+            font-weight: 600;
             transition: background 0.3s;
         }
 
@@ -104,171 +144,184 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
 
+    <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container">
-            <a class="navbar-brand fs-3" href="#inicio"><i class="fa-solid fa-utensils me-2"></i>Sabores Únicos</a>
-            <button class="navbar-expand-lg navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fs-3 text-white" href="#inicio"><i class="fa-solid fa-utensils me-2" style="color: var(--primary-color);"></i>Gourmet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cartas" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Nuestras Cartas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reserva" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Reservar Mesa</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#inicio" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu-section" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Menú</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reserva" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Reservas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Inicio (Hero) -->
     <section id="inicio" class="hero-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
-                    <h1 class="display-3 fw-bold mb-3">Alta Cocina a tu Alcance</h1>
-                    <p class="lead mb-4">Descubre una experiencia gastronómica inolvidable en un ambiente acogedor y elegante.</p>
-                    <a href="#cartas" class="btn btn-custom btn-lg me-2 mb-2">Ver Menú</a>
-                    <a href="#reserva" class="btn btn-outline-light btn-lg mb-2">Reservar Mesa</a>
-                </div>
-            </div>
+            <h1 class="display-2 fw-bold mb-3">Sabores del Pacífico</h1>
+            <p class="lead text-light mb-4">Una experiencia culinaria diseñada para los paladares más exigentes.</p>
+            <a href="#menu-section" class="btn btn-custom btn-lg">Explorar Menú</a>
         </div>
     </section>
 
-    <section id="cartas" class="py-5">
-        <div class="container py-4">
+    <!-- Sección Menú (Corregida y con diseño oscuro) -->
+    <section id="menu-section" class="py-5">
+        <div class="container py-5">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold">Nuestras Cartas</h2>
-                <div class="mx-auto bg-warning mb-3" style="height: 3px; width: 60px;"></div>
-                <p class="text-muted">Explora nuestras especialidades preparadas por chefs de renombre.</p>
+                <h2 class="display-4 fw-bold section-title">Descubre el Menú</h2>
+                <div class="mx-auto mb-3" style="height: 2px; width: 50px; background-color: var(--primary-color);"></div>
             </div>
 
-            <ul class="nav nav-pills justify-content-center mb-4" id="pills-tab" roletablist>
+            <!-- Navegación de Pestañas (Tabs) CORREGIDO -->
+            <ul class="nav nav-tabs justify-content-center mb-5" id="menuTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-entrantes-tab" data-bs-toggle="pill" data-bs-target="#pills-entrantes" type="button" role="tab">Entrantes</button>
+                    <button class="nav-link active" id="fuertes-tab" data-bs-toggle="tab" data-bs-target="#fuertes" type="button" role="tab" aria-controls="fuertes" aria-selected="true">Fuertes</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-principales-tab" data-bs-toggle="pill" data-bs-target="#pills-principales" type="button" role="tab">Principales</button>
+                    <button class="nav-link" id="entradas-tab" data-bs-toggle="tab" data-bs-target="#entradas" type="button" role="tab" aria-controls="entradas" aria-selected="false">Entradas</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-postres-tab" data-bs-toggle="pill" data-bs-target="#pills-postres" type="button" role="tab">Postres y Vinos</button>
+                    <button class="nav-link" id="postres-tab" data-bs-toggle="tab" data-bs-target="#postres" type="button" role="tab" aria-controls="postres" aria-selected="false">Postres & Vinos</button>
                 </li>
             </ul>
 
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-entrantes" roletabpanel>
+            <!-- Contenido de las Pestañas CORREGIDO -->
+            <div class="tab-content" id="menuTabsContent">
+                
+                <!-- PANE: FUERTES -->
+                <div class="tab-pane fade show active" id="fuertes" role="tabpanel" aria-labelledby="fuertes-tab">
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Tabla de Quesos Artesanales</h5>
-                                    <p class="text-muted small mb-0">Selección de quesos locales acompañados de miel de higo.</p>
+                                    <div class="menu-title">Filet Mignon en Reducción de Malbec</div>
+                                    <div class="menu-desc">Medallón de tierno lomo envuelto en panceta ahumada, acompañado de puré rústico trufado.</div>
                                 </div>
-                                <span class="menu-price">14€</span>
+                                <span class="menu-price">$34</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Tartar de Atún Rojo</h5>
-                                    <p class="text-muted small mb-0">Con aguacate, aliño de sésamo y esferificaciones de soja.</p>
+                                    <div class="menu-title">Salmón Rosado del Pacífico</div>
+                                    <div class="menu-desc">A la plancha con costra de hierbas finas, sobre colchón de espárragos salteados y crema de limón.</div>
                                 </div>
-                                <span class="menu-price">18€</span>
+                                <span class="menu-price">$29</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="menu-title">Risotto de Hongos Silvestres</div>
+                                    <div class="menu-desc">Arroz carnaroli cremoso con una fina selección de gárgolas y champiñones, terminado con queso parmesano añejo.</div>
+                                </div>
+                                <span class="menu-price">$26</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="menu-title">Costillas de Cordero Patagónico</div>
+                                    <div class="menu-desc">Asadas lentamente al romero y ajo, acompañadas de papas doradas al horno de barro.</div>
+                                </div>
+                                <span class="menu-price">$38</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="pills-principales" roletabpanel>
+                <!-- PANE: ENTRADAS -->
+                <div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Solomillo de Buey</h5>
-                                    <p class="text-muted small mb-0">A la brasa, reducción de vino tinto y puré de trufa.</p>
+                                    <div class="menu-title">Tartar de Atún Rojo</div>
+                                    <div class="menu-desc">Con dados de aguacate fresco, aderezo de sésamo y láminas de rábano silvestre.</div>
                                 </div>
-                                <span class="menu-price">26€</span>
+                                <span class="menu-price">$18</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Bacalao Confitado</h5>
-                                    <p class="text-muted small mb-0">Sobre cama de pisto tradicional y emulsión de ajos tiernos.</p>
+                                    <div class="menu-title">Carpaccio de Res</div>
+                                    <div class="menu-desc">Fin cortes de lomo, alcaparras, lascas de parmesano y un toque de aceite de trufa blanca.</div>
                                 </div>
-                                <span class="menu-price">22€</span>
+                                <span class="menu-price">$16</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="pills-postres" roletabpanel>
+                <!-- PANE: POSTRES & VINOS -->
+                <div class="tab-pane fade" id="postres" role="tabpanel" aria-labelledby="postres-tab">
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Coulant de Chocolate</h5>
-                                    <p class="text-muted small mb-0">Corazón fluido de chocolate negro con helado de vainilla Madagascar.</p>
+                                    <div class="menu-title">Volcán de Chocolate Amargo</div>
+                                    <div class="menu-desc">Con centro líquido caliente, servido con una bola de helado artesanal de crema americana.</div>
                                 </div>
-                                <span class="menu-price">7€</span>
+                                <span class="menu-price">$11</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="menu-item d-flex justify-content-between align-items-center">
+                            <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="fw-bold mb-1">Tarta de Queso Fluida</h5>
-                                    <p class="text-muted small mb-0">Nuestra receta horneada al estilo San Sebastián.</p>
+                                    <div class="menu-title">Copa de Malbec Gran Reserva</div>
+                                    <div class="menu-desc">Selección de la casa, ideal para maridar con carnes rojas y chocolates intensos.</div>
                                 </div>
-                                <span class="menu-price">8€</span>
+                                <span class="menu-price">$12</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- Sección de Reserva -->
     <section id="reserva" class="reservation-section py-5">
-        <div class="container py-4">
+        <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center mb-4">
                     <h2 class="display-5 fw-bold">Reserva tu Mesa</h2>
-                    <p class="text-muted">Asegura tu lugar y disfruta de una velada única.</p>
+                    <p class="text-muted">Asegura tu lugar y vive un momento inolvidable.</p>
                 </div>
                 <div class="col-lg-6">
                     <form class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label">Nombre Completo</label>
-                            <input type="text" class="form-control" placeholder="Ej. Juan Pérez" required>
+                            <label class="form-label text-white-50">Nombre</label>
+                            <input type="text" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" placeholder="Ej. 600 000 000" required>
+                            <label class="form-label text-white-50">Teléfono</label>
+                            <input type="tel" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Fecha</label>
+                            <label class="form-label text-white-50">Fecha</label>
                             <input type="date" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Hora</label>
+                            <label class="form-label text-white-50">Hora</label>
                             <select class="form-select" required>
-                                <option selected disabled value="">Seleccionar...</option>
-                                <option>13:30</option>
+                                <option selected disabled value="">Elegir...</option>
+                                <option>13:00</option>
                                 <option>14:30</option>
-                                <option>20:30</option>
-                                <option>21:30</option>
+                                <option>21:00</option>
+                                <option>22:30</option>
                             </select>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label">Número de Comensales</label>
-                            <input type="number" class="form-control" min="1" max="20" placeholder="Cantidad de personas" required>
-                        </div>
                         <div class="col-12 text-center mt-4">
-                            <button type="submit" class="btn btn-custom btn-lg w-100">Confirmar Solicitud</button>
+                            <button type="submit" class="btn btn-custom w-100 py-3">Confirmar mi Reserva</button>
                         </div>
                     </form>
                 </div>
@@ -276,10 +329,12 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p class="mb-0 small">&copy; 2026 Sabores Únicos. Diseñado para deleitar.</p>
+    <!-- Footer -->
+    <footer class="text-center py-4" style="background-color: #050505; border-top: 1px solid #111;">
+        <p class="mb-0 text-white-50 small">&copy; 2026 Restaurante Gourmet. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Bootstrap 5 JS Bundle (Indispensable para el cambio de pestañas) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
