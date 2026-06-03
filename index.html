@@ -30,7 +30,7 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navbar */
+        /* Navbar estilo elegante */
         .navbar {
             background-color: rgba(10, 10, 10, 0.95) !important;
             backdrop-filter: blur(5px);
@@ -39,6 +39,8 @@
 
         .nav-link {
             color: #ffffff !important;
+            font-weight: 400;
+            transition: color 0.3s;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -54,7 +56,7 @@
             text-align: center;
         }
 
-        /* Estilos de las Pestañas (Menú) al estilo de la imagen */
+        /* Estilos de las Pestañas (Menú) */
         .nav-tabs {
             border-bottom: none;
         }
@@ -73,15 +75,14 @@
             color: var(--primary-color) !important;
         }
 
-        /* Línea inferior animada para la pestaña activa */
         .nav-tabs .nav-link.active::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 20px;
             right: 20px;
-            height: 20px;
-            border-bottom: 2px solid var(--primary-color);
+            height: 2px;
+            background-color: var(--primary-color);
         }
 
         /* Elementos del Menú */
@@ -144,7 +145,7 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
 
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación (Enlaces vinculados correctamente a los IDs) -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container">
             <a class="navbar-brand fs-3 text-white" href="#inicio"><i class="fa-solid fa-utensils me-2" style="color: var(--primary-color);"></i>Gourmet</a>
@@ -161,7 +162,7 @@
         </div>
     </nav>
 
-    <!-- Inicio (Hero) -->
+    <!-- Sección Inicio (Hero) -->
     <section id="inicio" class="hero-section">
         <div class="container">
             <h1 class="display-2 fw-bold mb-3">Sabores del Pacífico</h1>
@@ -170,7 +171,7 @@
         </div>
     </section>
 
-    <!-- Sección Menú (Corregida y con diseño oscuro) -->
+    <!-- Sección Menú (ID corregido para el scroll) -->
     <section id="menu-section" class="py-5">
         <div class="container py-5">
             <div class="text-center mb-5">
@@ -178,24 +179,24 @@
                 <div class="mx-auto mb-3" style="height: 2px; width: 50px; background-color: var(--primary-color);"></div>
             </div>
 
-            <!-- Navegación de Pestañas (Tabs) CORREGIDO -->
+            <!-- Navegación de Pestañas -->
             <ul class="nav nav-tabs justify-content-center mb-5" id="menuTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="fuertes-tab" data-bs-toggle="tab" data-bs-target="#fuertes" type="button" role="tab" aria-controls="fuertes" aria-selected="true">Fuertes</button>
+                    <button class="nav-link active" id="fuertes-tab" data-bs-toggle="tab" data-bs-target="#fuertes" type="button" role="tab">Fuertes</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="entradas-tab" data-bs-toggle="tab" data-bs-target="#entradas" type="button" role="tab" aria-controls="entradas" aria-selected="false">Entradas</button>
+                    <button class="nav-link" id="entradas-tab" data-bs-toggle="tab" data-bs-target="#entradas" type="button" role="tab">Entradas</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="postres-tab" data-bs-toggle="tab" data-bs-target="#postres" type="button" role="tab" aria-controls="postres" aria-selected="false">Postres & Vinos</button>
+                    <button class="nav-link" id="postres-tab" data-bs-toggle="tab" data-bs-target="#postres" type="button" role="tab">Postres & Vinos</button>
                 </li>
             </ul>
 
-            <!-- Contenido de las Pestañas CORREGIDO -->
+            <!-- Contenido de las Pestañas -->
             <div class="tab-content" id="menuTabsContent">
                 
                 <!-- PANE: FUERTES -->
-                <div class="tab-pane fade show active" id="fuertes" role="tabpanel" aria-labelledby="fuertes-tab">
+                <div class="tab-pane fade show active" id="fuertes" role="tabpanel">
                     <div class="row g-4">
                         <div class="col-md-6">
                             <div class="menu-item d-flex justify-content-between align-items-start">
@@ -237,7 +238,7 @@
                 </div>
 
                 <!-- PANE: ENTRADAS -->
-                <div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
+                <div class="tab-pane fade" id="entradas" role="tabpanel">
                     <div class="row g-4">
                         <div class="col-md-6">
                             <div class="menu-item d-flex justify-content-between align-items-start">
@@ -252,7 +253,7 @@
                             <div class="menu-item d-flex justify-content-between align-items-start">
                                 <div>
                                     <div class="menu-title">Carpaccio de Res</div>
-                                    <div class="menu-desc">Fin cortes de lomo, alcaparras, lascas de parmesano y un toque de aceite de trufa blanca.</div>
+                                    <div class="menu-desc">Finos cortes de lomo, alcaparras, lascas de parmesano y un toque de aceite de trufa blanca.</div>
                                 </div>
                                 <span class="menu-price">$16</span>
                             </div>
@@ -261,7 +262,7 @@
                 </div>
 
                 <!-- PANE: POSTRES & VINOS -->
-                <div class="tab-pane fade" id="postres" role="tabpanel" aria-labelledby="postres-tab">
+                <div class="tab-pane fade" id="postres" role="tabpanel">
                     <div class="row g-4">
                         <div class="col-md-6">
                             <div class="menu-item d-flex justify-content-between align-items-start">
@@ -288,7 +289,7 @@
         </div>
     </section>
 
-    <!-- Sección de Reserva -->
+    <!-- Sección de Reserva (ID corregido para el scroll) -->
     <section id="reserva" class="reservation-section py-5">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -334,7 +335,7 @@
         <p class="mb-0 text-white-50 small">&copy; 2026 Restaurante Gourmet. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle (Indispensable para el cambio de pestañas) -->
+    <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
